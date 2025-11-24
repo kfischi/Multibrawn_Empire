@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בואו נמצא את המקום המושלם - MULTIBRAWN</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%);
+            --accent-primary: #FF5EA1;
+            --accent-secondary: #00E0FF;
+            --accent-tertiary: #A06BFF;
+            --white: #FAFAFA;
+            --text-dark: #1a0b2e;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Heebo', sans-serif;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--primary-bg);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 700; }
+        
+        /* ========== HEADER ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo img { width: 45px; height: 45px; }
+        
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-family: var(--font-display);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover { opacity: 0.6; }
+        
+        .nav-cta {
+            background: var(--accent-primary);
+            color: var(--white) !important;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(255, 94, 161, 0.4);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        /* ========== CHAT CONTAINER ========== */
+        .chat-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .chat-container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chat-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .header-avatar {
+            width: 80px;
+            height: 80px;
+            background-image: url('https://res.cloudinary.com/dptyfvwyo/image/upload/v1762012646/Ardit_znq9aj.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 4px solid white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .chat-header h1 {
+            color: var(--white);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chat-header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chat-messages {
+            padding: 2.5rem;
+            max-height: 600px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        .chat-messages::-webkit-scrollbar { width: 8px; }
+        .chat-messages::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 10px; }
+        
+        .message {
+            margin-bottom: 1.5rem;
+            animation: messageSlide 0.5s ease;
+        }
+        
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .message.user {
+            animation: messageSlideUser 0.5s ease;
+        }
+        
+        @keyframes messageSlideUser {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .message-bubble {
+            display: inline-block;
+            padding: 1.2rem 1.8rem;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message.bot .message-bubble {
+            background: white;
+            color: var(--text-dark);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message.user {
+            text-align: left;
+        }
+        
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            color: white;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .bot-avatar {
+            width: 50px;
+            height: 50px;
+            background-image: url('https://res.cloudinary.com/dptyfvwyo/image/upload/v1762012646/Ardit_znq9aj.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.8rem;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bot-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bot-avatar i {
+            display: none; /* מסתיר את האייקון */
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            gap: 5px;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 20px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: typingDot 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        
+        /* ========== OPTIONS ========== */
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .option-btn {
+            background: white;
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .option-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .option-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 94, 161, 0.4);
+        }
+        
+        .option-btn.selected {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            color: white;
+            border-color: var(--accent-primary);
+        }
+        
+        /* ========== INPUT ========== */
+        .chat-input-container {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            background: white;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(255, 94, 161, 0.1);
+        }
+        
+        .send-btn {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 94, 161, 0.4);
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 94, 161, 0.6);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* ========== PROGRESS BAR ========== */
+        .progress-container {
+            padding: 1.5rem 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 94, 161, 0.5);
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* ========== SUMMARY CARD ========== */
+        .summary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .summary-item {
+            display: flex;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .summary-content {
+            flex: 1;
+        }
+        
+        .summary-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.2rem;
+        }
+        
+        .summary-value {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .whatsapp-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* ========== FLOATING BUTTONS ========== */
+        .floating-btn {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float {
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+        }
+        
+        .accessibility-float {
+            bottom: 30px;
+            left: 30px;
+            background-color: #0072b1;
+            font-size: 1.5rem;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active { transform: translateX(0); }
+            
+            .menu-toggle { display: block; }
+            
+            .chat-hero { padding: 6rem 1rem 2rem; }
+            
+            .chat-messages { padding: 1.5rem; max-height: 400px; }
+            
+            .message-bubble { max-width: 90%; }
+            
+            .options-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .chat-input-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="index-v2.html" class="logo">
+                <img src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png" alt="MULTIBRAWN" width="45" height="45">
+                <span>MULTIBRAWN</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index-v2.html">דף הבית</a>
+                <a href="gallery.html">גלריה</a>
+                <a href="tips-reels.html">טיפים</a>
+                <a href="about.html">אודות</a>
+                <a href="contact.html" class="nav-cta">צור קשר</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="chat-hero">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="header-avatar"></div>
+                <h1>👋 שלום, אני ערדית ממולטיבראון</h1>
+                <p>בואו נמצא ביחד את המקום המושלם עבורכם</p>
+            </div>
+            
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText"></div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="message-bubble">
+                        שלום! 👋 אני ערדית ממולטיבראון. אני כאן כדי לעזור לכם למצוא את המקום המושלם לאירוע או לנופש שלכם. בואו נתחיל!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="input-wrapper">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="הקלידו את התשובה שלכם..." disabled>
+                    <button class="send-btn" id="sendBtn" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // State
+        const conversationState = {
+            venueType: '',
+            area: '',
+            composition: '',
+            guestCount: '',
+            features: [],
+            eventType: '',
+            importantFeatures: '',
+            date: '',
+            budget: '',
+            additionalInfo: '',
+            name: '',
+            phone: '',
+            email: '',
+            currentStep: 0
+        };
+
+        // Elements
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        
+        // Questions Flow - UPGRADED: Smarter, More Human, More Context-Aware
+        const questions = [
+            {
+                step: 0,
+                question: "שמחה להכיר! 😊 ספרו לי קצת - מה מביא אתכם אלינו היום?",
+                followUp: "אתם מחפשים מקום לנופש או לאירוע מיוחד?",
+                type: "smart-options",
+                options: [
+                    { icon: "🌴", text: "נופש רומנטי", value: "נופש רומנטי", category: "vacation" },
+                    { icon: "👨‍👩‍👧‍👦", text: "חופשה משפחתית", value: "חופשה משפחתית", category: "vacation" },
+                    { icon: "💍", text: "חתונה", value: "חתונה", category: "event" },
+                    { icon: "🎉", text: "אירוע משפחתי", value: "אירוע משפחתי", category: "event" },
+                    { icon: "👔", text: "אירוע עסקי", value: "אירוע עסקי", category: "event" },
+                    { icon: "🎊", text: "אני רק מחפש רעיונות", value: "מחפש רעיונות", category: "explore" }
+                ],
+                field: "purpose",
+                smartResponse: (answer) => {
+                    if (answer.includes("נופש") || answer.includes("חופשה")) return "נפלא! אני אעזור לכם למצוא את המקום המושלם להירגע ולהתנתק 🌟";
+                    if (answer.includes("חתונה")) return "מזל טוב! 💕 איזה כיף לעזור לכם לתכנן את היום הכי חשוב!";
+                    if (answer.includes("אירוע")) return "נשמע מרגש! בואו נמצא את המקום המושלם לאירוע שלכם 🎊";
+                    return "מעולה! בואו נתחיל למצוא בדיוק מה שאתם צריכים ✨";
+                }
+            },
+            {
+                step: 1,
+                getDynamicQuestion: (state) => {
+                    if (state.purpose?.includes("נופש") || state.purpose?.includes("חופשה")) {
+                        return "אני מבין שאתם מחפשים מקום לנופש 🏖️ איזה סוג לינה מדבר אליכם?";
+                    } else if (state.purpose?.includes("חתונה")) {
+                        return "חתונה זה דבר גדול! 💒 איזה סגנון אתם חולמים עליו?";
+                    } else {
+                        return "עכשיו בואו נדייק - איזה סוג מקום אתם מחפשים?";
+                    }
+                },
+                type: "smart-options",
+                options: [
+                    { icon: "🏡", text: "צימר אינטימי", value: "צימר", desc: "מושלם לזוגות", keywords: ["רומנטי", "זוג", "פרטיות"] },
+                    { icon: "🏛️", text: "וילה מפוארת", value: "וילה", desc: "למשפחות וקבוצות", keywords: ["משפחה", "קבוצה", "מרווח"] },
+                    { icon: "🏙️", text: "דירת נופש", value: "דירת נופש", desc: "בעיר או ליד הים", keywords: ["עיר", "ים", "נוח"] },
+                    { icon: "🏨", text: "מלון בוטיק", value: "מלון בוטיק", desc: "שירות מלא", keywords: ["שירות", "פינוק", "מלון"] },
+                    { icon: "💍", text: "מתחם לאירועים", value: "מתחם לאירועים", desc: "לחתונות ואירועים", keywords: ["חתונה", "אירוע", "אולם"] }
+                ],
+                field: "venueType",
+                smartResponse: (answer, state) => {
+                    if (answer === "צימר") return "בחירה מעולה! יש לנו צימרים מדהימים עם אווירה רומנטית 💕";
+                    if (answer === "וילה") return "וילה זה בחירה נהדרת! יש לנו וילות עם כל הפינוקים 🏛️";
+                    if (answer === "מתחם לאירועים") return "מושלם! יש לנו מתחמים מרהיבים לאירועים בלתי נשכחים 🎊";
+                    return "בחירה מצוינת! ממשיכים...";
+                }
+            },
+            {
+                step: 2,
+                getDynamicQuestion: (state) => {
+                    if (state.venueType === "מתחם לאירועים") {
+                        return "איזה אירוע מיוחד אתם מתכננים? 🎉";
+                    } else {
+                        return "מי מגיע לחופשה? רק אתם או המשפחה כולה? 👥";
+                    }
+                },
+                type: "smart-options",
+                getDynamicOptions: (state) => {
+                    if (state.venueType === "מתחם לאירועים") {
+                        return [
+                            { icon: "💒", text: "חתונה", value: "חתונה", desc: "היום הכי חשוב" },
+                            { icon: "🕍", text: "שבת חתן", value: "שבת חתן", desc: "סוף שבוע מיוחד" },
+                            { icon: "🎂", text: "בר/בת מצווה", value: "בר/בת מצווה", desc: "חגיגה משפחתית" },
+                            { icon: "🎉", text: "יום הולדת", value: "יום הולדת", desc: "מסיבת יומולדת" },
+                            { icon: "🎊", text: "מסיבת רווקים/רווקות", value: "מסיבת רווקים", desc: "חגיגת פרידה לרווקות" },
+                            { icon: "👔", text: "אירוע עסקי", value: "אירוע עסקי", desc: "כנס או ישיבה" },
+                            { icon: "🎈", text: "אירוע אחר", value: "אירוע אחר", desc: "ספרו לנו עוד רגע" }
+                        ];
+                    } else {
+                        return [
+                            { icon: "💑", text: "רק אנחנו (זוג)", value: "זוג", desc: "זמן איכות לשניים" },
+                            { icon: "👨‍👩‍👧‍👦", text: "משפחה עם ילדים", value: "משפחה", desc: "כולם ביחד" },
+                            { icon: "👥", text: "קבוצת חברים", value: "קבוצה", desc: "חבר'ה יחד" },
+                            { icon: "🏢", text: "נסיעת עבודה", value: "עסקים", desc: "לצרכי עבודה" }
+                        ];
+                    }
+                },
+                field: (state) => state.venueType === "מתחם לאירועים" ? "eventType" : "composition",
+                smartResponse: (answer, state) => {
+                    if (answer === "חתונה") return "איזה כיף! מזל טוב! 💍 בואו נמצא את המקום המושלם ליום המיוחד שלכם";
+                    if (answer === "שבת חתן") return "שבת חתן זה תמיד מיוחד! 🕍 יש לנו מקומות נהדרים לסוף שבוע בלתי נשכח";
+                    if (answer === "זוג") return "זמן איכות לזוג זה חשוב! 💕 יש לנו מקומות רומנטיים במיוחד";
+                    if (answer === "משפחה") return "חופשה משפחתית זה תמיד כיף! 👨‍👩‍👧‍👦 יש לנו מקומות מושלמים למשפחות";
+                    return "מעולה! ממשיכים...";
+                }
+            },
+            {
+                step: 3,
+                getDynamicQuestion: (state) => {
+                    if (state.eventType) {
+                        return `כמה אורחים אתם מצפים ל${state.eventType}? (משוער) 👥`;
+                    } else {
+                        return "כמה אנשים בסך הכל? (כדי שנמצא מקום מתאים) 🧮";
+                    }
+                },
+                type: "smart-text",
+                field: "guestCount",
+                placeholder: "למשל: 150 אורחים, או פשוט 2 אנשים...",
+                validation: (answer) => {
+                    // Extract number from text
+                    const num = parseInt(answer.match(/\d+/)?.[0] || answer);
+                    return !isNaN(num) && num > 0;
+                },
+                smartResponse: (answer, state) => {
+                    const num = parseInt(answer.match(/\d+/)?.[0] || answer);
+                    if (num <= 2) return "זוג לבד, מושלם! יש לנו מקומות אינטימיים במיוחד 💕";
+                    if (num <= 10) return "קבוצה קטנה, נחמד! יש לנו אפשרויות מעולות בדיוק בגודל הזה 👥";
+                    if (num <= 50) return "אירוע בינוני, מצוין! יש לנו מקומות שמושלמים לקבוצה כזו 🎉";
+                    if (num <= 150) return "אירוע גדול! יש לנו מתחמים מרווחים שיכולים לארח את כולם בנוחות 🎊";
+                    return "וואו, אירוע ענק! 🎉 יש לנו מתחמים גדולים במיוחד שיתאימו בול";
+                }
+            },
+            {
+                step: 4,
+                question: "איזה אזור בארץ? (אפשר גם מספר אזורים) 📍",
+                followUp: "למשל: צפון, מרכז, ים המלח...",
+                type: "smart-text",
+                field: "area",
+                placeholder: "הקלידו אזור או מספר אזורים...",
+                suggestions: ["צפון", "מרכז", "ירושלים והסביבה", "דרום", "ים המלח", "אילת", "גליל", "כרמל", "שפלה"],
+                smartResponse: (answer) => {
+                    if (answer.includes("צפון") || answer.includes("גליל")) return "הצפון זה פסטורלי ונפלא! יש לנו מקומות מדהימים שם 🌲";
+                    if (answer.includes("ים המלח")) return "ים המלח זה חוויה! פינוק טבעי במיטבו 🏖️";
+                    if (answer.includes("אילת")) return "אילת זה תמיד רעיון מצוין! שמש וים כחול 🌊";
+                    if (answer.includes("מרכז")) return "המרכז זה נוח ונגיש, בחירה חכמה! 🏙️";
+                    return "אזור מעולה! יש לנו אפשרויות נהדרות שם 🗺️";
+                }
+            },
+            {
+                step: 5,
+                getDynamicQuestion: (state) => {
+                    return "מה חשוב לכם שיהיה במקום? בחרו כל מה שרלוונטי ✨";
+                },
+                followUp: "אפשר לבחור מספר דברים!",
+                type: "smart-multiOptions",
+                options: [
+                    { icon: "🏊", text: "בריכה", value: "בריכה", priority: "high" },
+                    { icon: "🛁", text: "ג'קוזי", value: "ג'קוזי", priority: "high" },
+                    { icon: "🌊", text: "קרוב לים", value: "קרוב לים", priority: "high" },
+                    { icon: "🔥", text: "אח/קמין", value: "אח", priority: "medium" },
+                    { icon: "🍳", text: "מטבח מאובזר", value: "מטבח מאובזר", priority: "medium" },
+                    { icon: "🚗", text: "חניה", value: "חניה", priority: "medium" },
+                    { icon: "🌳", text: "גינה/נוף", value: "גינה", priority: "medium" },
+                    { icon: "♿", text: "נגישות מלאה", value: "נגישות", priority: "medium" },
+                    { icon: "🐕", text: "ניתן להביא כלבים", value: "מתאים לכלבים", priority: "low" },
+                    { icon: "📶", text: "WiFi מהיר", value: "WiFi", priority: "low" },
+                    { icon: "🕌", text: "שומר שבת", value: "שומר שבת", priority: "medium" },
+                    { icon: "🍖", text: "מנגל", value: "מנגל", priority: "medium" },
+                    { icon: "🎵", text: "מערכת קול", value: "מערכת קול", priority: "low" },
+                    { icon: "🎮", text: "פינת משחקים לילדים", value: "פינת משחקים", priority: "low" }
+                ],
+                field: "features",
+                smartResponse: (answers, state) => {
+                    const count = answers.length;
+                    if (count === 0) return "בסדר, נמשיך בלי דרישות מיוחדות 👌";
+                    if (count <= 2) return "דרישות ברורות, אני אוהבת! 👍";
+                    if (count <= 5) return "יש לכם רשימת משאלות טובה! נמצא משהו שמתאים 🎯";
+                    return "וואו, אתם יודעים מה אתם רוצים! זה מעולה 🌟";
+                }
+            },
+            {
+                step: 6,
+                question: "מתי אתם מתכננים? (בערך) 📅",
+                followUp: "גם אם זה עדיין לא מדויק - זה עוזר לנו",
+                type: "smart-text",
+                field: "date",
+                placeholder: "למשל: סוף השבוע הבא, קיץ 2025, חודש יוני...",
+                smartResponse: (answer) => {
+                    if (answer.includes("בוע") || answer.includes("מחר") || answer.includes("היום")) return "וואו, קרוב! נזרז אז 🏃‍♀️";
+                    if (answer.includes("חודש")) return "זמן טוב לתכנון! 📋";
+                    return "מעולה, רשמתי! 📝";
+                }
+            },
+            {
+                step: 7,
+                getDynamicQuestion: (state) => {
+                    if (state.eventType) {
+                        return "מה התקציב המשוער לאירוע? (אפשר טווח) 💰";
+                    } else {
+                        return "מה התקציב ללילה? (בערך) 💵";
+                    }
+                },
+                followUp: "זה עוזר לנו להציע אפשרויות מתאימות",
+                type: "smart-text",
+                field: "budget",
+                placeholder: "למשל: 500-800 ₪, או 50,000-80,000 ₪...",
+                smartResponse: (answer, state) => {
+                    return "תודה! זה עוזר לי להתאים בול את האפשרויות 🎯";
+                }
+            },
+            {
+                step: 8,
+                question: "יש משהו נוסף שחשוב לכם לספר? 💭",
+                followUp: "הכל רלוונטי - העדפות מיוחדות, שאלות, בקשות...",
+                type: "smart-text",
+                field: "additionalInfo",
+                placeholder: "כתבו כאן כל דבר שחשוב לכם...",
+                optional: true,
+                smartResponse: (answer) => {
+                    if (answer && answer.length > 10) return "תודה שחילקתם! זה ממש עוזר לי להבין מה מתאים לכם 🙏";
+                    return "בסדר גמור! 👌";
+                }
+            },
+            {
+                step: 9,
+                question: "מעולה! בואו נשמור את הפרטים שלכם כדי שאוכל ליצור איתכם קשר 📞",
+                followUp: "איך הכי נוח לכם שניצור קשר?",
+                type: "contact",
+                fields: ["name", "phone", "email"]
+            }
+        ];
+            },
+            {
+                step: 7,
+                question: "מה התקציב המשוער שלכם?",
+                type: "options",
+                options: [
+                    { icon: "💰", text: "עד 2,000 ₪", value: "עד 2,000 ₪" },
+                    { icon: "💰💰", text: "2,000-5,000 ₪", value: "2,000-5,000 ₪" },
+                    { icon: "💰💰💰", text: "5,000-10,000 ₪", value: "5,000-10,000 ₪" },
+                    { icon: "💎", text: "10,000+ ₪", value: "10,000+ ₪" },
+                    { icon: "❓", text: "גמיש", value: "גמיש" }
+                ],
+                field: "budget"
+            },
+            {
+                step: 8,
+                question: "מעולה! עכשיו בואו נדבר איתכם 😊 מה השם שלכם?",
+                type: "text",
+                field: "name",
+                placeholder: "השם שלכם..."
+            },
+            {
+                step: 9,
+                question: "ומה מספר הטלפון שלכם?",
+                type: "phone",
+                field: "phone",
+                placeholder: "050-1234567"
+            },
+            {
+                step: 10,
+                question: "ולבסוף, מה כתובת האימייל שלכם?",
+                type: "email",
+                field: "email",
+                placeholder: "example@email.com"
+            }
+        ];
+
+        // Add bot message
+        function addBotMessage(message, delay = 1000) {
+            return new Promise(resolve => {
+                // Show typing indicator
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot';
+                typingDiv.innerHTML = `
+                    <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                setTimeout(() => {
+                    typingDiv.remove();
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot';
+                    messageDiv.innerHTML = `
+                        <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+                        <div class="message-bubble">${message}</div>
+                    `;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    resolve();
+                }, delay);
+            });
+        }
+
+        // Add user message
+        function addUserMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `
+                <div class="message-bubble">${message}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show options
+        function showOptions(options, isMulti = false) {
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'message bot';
+            
+            let optionsHTML = '<div class="options-container">';
+            options.forEach((option, index) => {
+                optionsHTML += `
+                    <button class="option-btn" data-value="${option.value}" data-index="${index}">
+                        <span>${option.icon}</span>
+                        <span>${option.text}</span>
+                    </button>
+                `;
+            });
+            optionsHTML += '</div>';
+            
+            optionsDiv.innerHTML = optionsHTML;
+            chatMessages.appendChild(optionsDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Add click handlers
+            const buttons = optionsDiv.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (isMulti) {
+                        btn.classList.toggle('selected');
+                        
+                        // Enable input for multi-select
+                        chatInput.disabled = false;
+                        sendBtn.disabled = false;
+                        chatInput.placeholder = "לחצו על הכפתורים שרלוונטיים ואז שלחו...";
+                        chatInput.focus();
+                    } else {
+                        const value = btn.getAttribute('data-value');
+                        handleAnswer(value);
+                        buttons.forEach(b => b.disabled = true);
+                    }
+                });
+            });
+        }
+
+        // Update progress
+        function updateProgress() {
+            const totalSteps = questions.filter(q => !q.condition || q.condition(conversationState)).length;
+            const progress = (conversationState.currentStep / totalSteps) * 100;
+            
+            if (conversationState.currentStep > 0) {
+                progressContainer.style.display = 'block';
+            }
+            
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `שלב ${conversationState.currentStep} מתוך ${totalSteps}`;
+        }
+
+        // Handle answer
+        async function handleAnswer(answer) {
+            // Disable input
+            chatInput.disabled = true;
+            sendBtn.disabled = true;
+            chatInput.value = '';
+            
+            // Add user message
+            addUserMessage(answer);
+            
+            // Save answer
+            const currentQuestion = questions.find(q => q.step === conversationState.currentStep);
+            if (currentQuestion) {
+                conversationState[currentQuestion.field] = answer;
+            }
+            
+            // Update progress
+            conversationState.currentStep++;
+            updateProgress();
+            
+            // Get next question
+            const nextQuestion = getNextQuestion();
+            
+            if (nextQuestion) {
+                await askQuestion(nextQuestion);
+            } else {
+                await showSummary();
+            }
+        }
+
+        // Get next question
+        function getNextQuestion() {
+            for (let i = 0; i < questions.length; i++) {
+                const q = questions[i];
+                if (q.step >= conversationState.currentStep) {
+                    if (!q.condition || q.condition(conversationState)) {
+                        conversationState.currentStep = q.step;
+                        return q;
+                    }
+                }
+            }
+            return null;
+        }
+
+        // Ask question
+        async function askQuestion(question) {
+            await addBotMessage(question.question, 800);
+            
+            if (question.type === "options") {
+                showOptions(question.options, false);
+            } else if (question.type === "multiOptions") {
+                showOptions(question.options, true);
+                
+                // Set up send button for multi-select
+                const handleMultiSend = () => {
+                    const selected = document.querySelectorAll('.option-btn.selected');
+                    if (selected.length > 0) {
+                        const values = Array.from(selected).map(btn => btn.getAttribute('data-value'));
+                        conversationState.features = values;
+                        handleAnswer(values.join(', '));
+                        sendBtn.removeEventListener('click', handleMultiSend);
+                        chatInput.removeEventListener('keypress', handleMultiEnter);
+                    }
+                };
+                
+                const handleMultiEnter = (e) => {
+                    if (e.key === 'Enter') {
+                        handleMultiSend();
+                    }
+                };
+                
+                sendBtn.addEventListener('click', handleMultiSend);
+                chatInput.addEventListener('keypress', handleMultiEnter);
+                
+            } else {
+                // Enable text input
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                chatInput.placeholder = question.placeholder || "הקלידו את התשובה...";
+                chatInput.focus();
+                
+                if (question.optional) {
+                    await addBotMessage("(אופציונלי - אפשר גם לדלג)", 300);
+                }
+            }
+        }
+
+        // Show summary and send to WhatsApp
+        async function showSummary() {
+            await addBotMessage("מעולה! קיבלתי את כל הפרטים 🎉", 800);
+            await addBotMessage("הנה סיכום של מה שחיפשנו:", 1000);
+            
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'message bot';
+            summaryDiv.style.maxWidth = '100%';
+            
+            let summaryHTML = '<div class="summary-card"><h3>📋 סיכום הפרטים שלכם</h3>';
+            
+            const summaryItems = [
+                { icon: '🏠', label: 'סוג מתחם', value: conversationState.venueType },
+                { icon: '📍', label: 'אזור', value: conversationState.area },
+                { icon: '👥', label: conversationState.venueType === 'מתחם לאירועים' ? 'סוג אירוע' : 'הרכב', 
+                  value: conversationState.venueType === 'מתחם לאירועים' ? conversationState.eventType : conversationState.composition },
+                { icon: '🎯', label: 'כמות אנשים', value: conversationState.guestCount },
+                { icon: '✨', label: 'מאפיינים', value: conversationState.features.join(', ') || 'לא צוין' },
+                { icon: '📅', label: 'תאריך משוער', value: conversationState.date },
+                { icon: '💰', label: 'תקציב', value: conversationState.budget },
+                { icon: '📝', label: 'מידע נוסף', value: conversationState.additionalInfo || 'אין' },
+                { icon: '👤', label: 'שם', value: conversationState.name },
+                { icon: '📞', label: 'טלפון', value: conversationState.phone },
+                { icon: '📧', label: 'אימייל', value: conversationState.email }
+            ];
+            
+            summaryItems.forEach(item => {
+                if (item.value) {
+                    summaryHTML += `
+                        <div class="summary-item">
+                            <div class="summary-icon">${item.icon}</div>
+                            <div class="summary-content">
+                                <div class="summary-label">${item.label}</div>
+                                <div class="summary-value">${item.value}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            summaryHTML += `
+                <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    שלחו לי את הפרטים לוואטסאפ
+                </button>
+            </div>`;
+            
+            summaryDiv.innerHTML = summaryHTML;
+            chatMessages.appendChild(summaryDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            await addBotMessage("אני אצור איתכם קשר בהקדם! 💜", 1500);
+        }
+
+        // Send to WhatsApp
+        function sendToWhatsApp() {
+            // First, send data to n8n webhook
+            sendToN8nWebhook();
+            
+            const message = `🌟 *פנייה חדשה מהאתר* 🌟
+
+📋 *פרטי החיפוש:*
+
+🏠 *סוג מתחם:* ${conversationState.venueType}
+📍 *אזור:* ${conversationState.area}
+${conversationState.venueType === 'מתחם לאירועים' ? 
+    `💍 *סוג אירוע:* ${conversationState.eventType}` : 
+    `👥 *הרכב:* ${conversationState.composition}`}
+🎯 *כמות אנשים:* ${conversationState.guestCount}
+✨ *מאפיינים:* ${conversationState.features.join(', ')}
+📅 *תאריך:* ${conversationState.date}
+💰 *תקציב:* ${conversationState.budget}
+${conversationState.additionalInfo ? `📝 *מידע נוסף:* ${conversationState.additionalInfo}` : ''}
+
+👤 *פרטי יצירת קשר:*
+שם: ${conversationState.name}
+טלפון: ${conversationState.phone}
+אימייל: ${conversationState.email}`;
+
+            const whatsappNumber = '972523983394'; // ערדית - החליפי למספר הנכון
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+        
+        // Send data to n8n webhook for CRM storage
+        async function sendToN8nWebhook() {
+            const webhookURL = 'https://webmasterpro.app.n8n.cloud/webhook/6286a24e-50bb-48f2-8925-4f09b3533108';
+            
+            const leadData = {
+                timestamp: new Date().toISOString(),
+                dateFormatted: new Date().toLocaleString('he-IL'),
+                // Contact Info
+                name: conversationState.name || '',
+                phone: conversationState.phone || '',
+                email: conversationState.email || '',
+                // Venue Details
+                venueType: conversationState.venueType || '',
+                area: conversationState.area || '',
+                eventType: conversationState.eventType || '',
+                composition: conversationState.composition || '',
+                guestCount: conversationState.guestCount || '',
+                features: conversationState.features.join(', ') || '',
+                date: conversationState.date || '',
+                budget: conversationState.budget || '',
+                additionalInfo: conversationState.additionalInfo || '',
+                // Meta
+                source: 'Website Chatbot',
+                status: 'New Lead',
+                url: window.location.href
+            };
+            
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(leadData)
+                });
+                
+                if (response.ok) {
+                    console.log('✅ Lead sent to n8n successfully');
+                } else {
+                    console.error('❌ Failed to send lead to n8n:', response.status);
+                }
+            } catch (error) {
+                console.error('❌ Error sending to n8n:', error);
+            }
+        }
+
+
+        // Send message handler
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                handleAnswer(message);
+            }
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // Start conversation
+        setTimeout(() => {
+            const firstQuestion = getNextQuestion();
+            if (firstQuestion) {
+                askQuestion(firstQuestion);
+            }
+        }, 2000);
+    </script>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/972523983394?text=שלום,%20אני%20פונה%20מאתר%20מולטיבראון.%20אשמח%20שנדבר" target="_blank" class="floating-btn whatsapp-float" title="וואטסאפ">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="accessibility.html" class="floating-btn accessibility-float" title="נגישות">
+        <i class="fas fa-wheelchair"></i>
+    </a>
+
+</body>
+</html>
