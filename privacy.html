@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדיניות פרטיות - MULTIBRAWN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --site-accent: #FF5EA1; --site-text: #1a0b2e; }
+        body { font-family: 'Heebo', sans-serif; background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%); color: var(--site-text); overflow-x: hidden; min-height: 100vh; }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+        
+        #main-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); height: 80px; display: flex; align-items: center; }
+        nav { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { width: 50px; height: 50px; }
+        .logo span { font-size: 1.5rem; font-weight: 800; color: var(--site-text); font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--site-text); text-decoration: none; font-size: 1rem; font-weight: 600; }
+        .nav-cta { background: var(--site-accent); color: white !important; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(255, 94, 161, 0.4); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--site-text); cursor: pointer; background: none; border: none; }
+
+        .content-box { max-width: 900px; margin: 8rem auto 4rem; padding: 3rem; background: rgba(255,255,255,0.4); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--site-text); font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .back-link:hover { color: var(--site-accent); transform: translateX(5px); }
+
+        .floating-btn { position: fixed; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 9999; transition: transform 0.3s; cursor: pointer; }
+        .whatsapp-float { bottom: 30px; right: 30px; background-color: #25D366; text-decoration: none; }
+        .accessibility-float { bottom: 30px; left: 30px; background-color: #0072b1; font-size: 1.5rem; }
+
+        footer { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 3rem 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.2); }
+        .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-icon { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--site-text); font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
+        .social-icon:hover { transform: translateY(-3px); color: var(--site-accent); }
+
+        @media (max-width: 768px) { 
+            .nav-links { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 2rem; border-bottom: 1px solid #eee; gap: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .content-box { margin: 6rem 1rem 2rem; padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <nav>
+            <a href="index.html" class="logo"><img src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png" alt="Logo"><span>MULTIBRAWN</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">דף הבית</a>
+                <a href="gallery.html">גלריה</a>
+                <a href="tips.html">טיפים חשובים</a>
+                <a href="about.html">אודות</a>
+                <a href="contact.html" class="nav-cta">צור קשר</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <div class="content-box">
+        <a href="index.html" class="back-link">← חזרה לדף הבית</a>
+        <h1 class="text-4xl font-bold mb-6">מדיניות פרטיות</h1>
+        
+        <p class="mb-6 text-lg">תאריך עדכון אחרון: 24 בנובמבר 2025</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">1. מבוא</h2>
+        <p class="mb-4">אנו ב-MULTIBRAWN מכבדים את פרטיות המשתמשים באתר ומחויבים להגן על המידע האישי שהם משתפים עמנו. מדיניות זו מתארת את אופן איסוף המידע והשימוש בו.</p>
+        
+        <h2 class="text-2xl font-bold mt-8 mb-4">2. איסוף מידע</h2>
+        <p class="mb-4">אנו אוספים מידע שאתה מספק לנו מרצונך החופשי בעת מילוי טפסים באתר (שם, טלפון, דוא"ל), בעת יצירת קשר דרך הוואטסאפ או בעת שימוש בשירותי הצ'אטבוט שלנו.</p>
+        
+        <h2 class="text-2xl font-bold mt-8 mb-4">3. שימוש במידע</h2>
+        <ul class="list-disc pr-6 mb-4 space-y-2">
+            <li>מתן שירותי איתור לוקיישנים בהתאמה אישית.</li>
+            <li>יצירת קשר עמך למטרות תפעוליות ושיווקיות (בכפוף להסכמתך).</li>
+            <li>שיפור חווית הגלישה והשירותים באתר.</li>
+        </ul>
+        
+        <h2 class="text-2xl font-bold mt-8 mb-4">4. אבטחת מידע</h2>
+        <p class="mb-4">אנו נוקטים באמצעי אבטחה טכנולוגיים וארגוניים סבירים כדי להגן על המידע שלך מפני גישה בלתי מורשית. המידע נשמר במערכות מאובטחות.</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">5. יצירת קשר</h2>
+        <p class="mb-4">לכל שאלה בנוגע למדיניות זו, ניתן לפנות אלינו במייל: info@multibrawn.co.il</p>
+    </div>
+
+    <a href="https://wa.me/972523983394?text=שלום,%20אני%20פונה%20מאתר%20מולטיבראון" target="_blank" class="floating-btn whatsapp-float" title="וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+    <div class="floating-btn accessibility-float" onclick="alert('תפריט נגישות')" title="נגישות"><i class="fas fa-wheelchair"></i></div>
+
+    <footer>
+        <div style="margin-bottom:2rem;"><img src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png" style="width:60px;margin:0 auto;"></div>
+        <div class="footer-social">
+            <a href="https://www.youtube.com/@Multibrawn" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/1EhDNF1BCQ/?mibextid=wwXIfr" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/multibrawn.israel?igsh=eW5weTU3M2d0NXNz&utm_source=qr" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@multibrawn" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; justify-content: center; font-size: 0.9rem;">
+            <a href="privacy.html" style="color:white; opacity: 0.8; text-decoration: none;">מדיניות פרטיות</a>
+            <span style="color:white; opacity:0.5;">|</span>
+            <a href="accessibility.html" style="color:white; opacity: 0.8; text-decoration: none;">הצהרת נגישות</a>
+        </div>
+        <a href="contact.html" class="nav-cta" style="display:inline-block; margin-top:1rem;">הזמן עכשיו</a>
+        <p style="margin-top:2rem; opacity:0.7;">© 2025 MULTIBRAWN</p>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+    </script>
+</body>
+</html>
