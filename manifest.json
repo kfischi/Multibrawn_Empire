@@ -1,0 +1,128 @@
+{
+  "name": "MULTIBRAWN - סוכן אישי לאיתור לוקיישנים",
+  "short_name": "MULTIBRAWN",
+  "description": "מאגר בלעדי של וילות יוקרה, צימרים רומנטיים ומתחמי אירועים בישראל. הסוכן האישי שלכם למציאת הלוקיישן המושלם.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#FF5EA1",
+  "background_color": "#1a0b2e",
+  "lang": "he",
+  "dir": "rtl",
+  "categories": ["travel", "lifestyle", "business"],
+  "icons": [
+    {
+      "src": "/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "חיפוש וילות",
+      "short_name": "וילות",
+      "description": "מצא וילות פרטיות להשכרה",
+      "url": "/villas.html",
+      "icons": [
+        {
+          "src": "/shortcut-villa.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "צור קשר",
+      "short_name": "קשר",
+      "description": "דבר עם הסוכן האישי שלנו",
+      "url": "/contact.html",
+      "icons": [
+        {
+          "src": "/shortcut-contact.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "גלריה",
+      "short_name": "גלריה",
+      "description": "צפה בגלריית הנכסים שלנו",
+      "url": "/gallery.html",
+      "icons": [
+        {
+          "src": "/shortcut-gallery.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "related_applications": [],
+  "prefer_related_applications": false
+}
