@@ -1,0 +1,135 @@
+{
+  "name": "Multibrawn - Lead Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "6286a24e-50bb-48f2-8925-4f09b3533108",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Webhook - קבלת לידים מהאתר",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "6286a24e-50bb-48f2-8925-4f09b3533108"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID_HERE",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.timestamp }}",
+            "dateFormatted": "={{ $json.dateFormatted }}",
+            "name": "={{ $json.name }}",
+            "phone": "={{ $json.phone }}",
+            "email": "={{ $json.email }}",
+            "venueType": "={{ $json.venueType }}",
+            "area": "={{ $json.area }}",
+            "eventType": "={{ $json.eventType }}",
+            "composition": "={{ $json.composition }}",
+            "guestCount": "={{ $json.guestCount }}",
+            "features": "={{ $json.features }}",
+            "date": "={{ $json.date }}",
+            "budget": "={{ $json.budget }}",
+            "additionalInfo": "={{ $json.additionalInfo }}",
+            "source": "={{ $json.source }}",
+            "status": "={{ $json.status }}"
+          }
+        },
+        "options": {}
+      },
+      "name": "Google Sheets - שמירת ליד",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [500, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CREDENTIALS",
+          "name": "Google Sheets Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.whatsapp.com/send",
+        "options": {
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "phone",
+                "value": "972523983394"
+              },
+              {
+                "name": "text",
+                "value": "🔔 *ליד חדש!*\n\n👤 שם: {{ $json.name }}\n📞 טלפון: {{ $json.phone }}\n🏠 סוג: {{ $json.venueType }}\n📍 אזור: {{ $json.area }}\n🎯 אורחים: {{ $json.guestCount }}\n💰 תקציב: {{ $json.budget }}\n📅 תאריך: {{ $json.date }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "WhatsApp - שליחה לערדית",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://wa.me/{{ $json.phone }}",
+        "options": {
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "text",
+                "value": "שלום {{ $json.name }}! 👋\n\nתודה שפנית אלינו!\nקיבלנו את הפרטים שלך ונחזור אליך בהקדם.\n\nערדית ממולטיבראון\n📞 052-3983394\n🌐 multibrawn.com"
+              }
+            ]
+          }
+        }
+      },
+      "name": "WhatsApp - הודעה ללקוח",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 700]
+    }
+  ],
+  "connections": {
+    "Webhook - קבלת לידים מהאתר": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - שמירת ליד",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp - שליחה לערדית",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp - הודעה ללקוח",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
