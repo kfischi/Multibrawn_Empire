@@ -30,12 +30,14 @@
 ### **1.3 החלף בקוד:**
 ```html
 <!-- במקום G-XXXXXXXXXX, שים את ה-ID שלך -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ABC123XYZ"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TER4JG2GT1"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ABC123XYZ');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TER4JG2GT1');
 </script>
 ```
 
