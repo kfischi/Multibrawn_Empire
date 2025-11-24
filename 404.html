@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - העמוד לא נמצא | MULTIBRAWN</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #00E0FF, #2D7FFF, #A06BFF);
+            --accent-primary: #FF5EA1;
+            --white: #FAFAFA;
+            --text-dark: #1a0b2e;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Heebo', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--primary-bg);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container-404 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent-primary), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.6s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            color: rgba(26, 11, 46, 0.8);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: var(--accent-primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 94, 161, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 94, 161, 0.6);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--text-dark);
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-404">
+        <div class="error-code">404</div>
+        <h1>אופס! העמוד שחיפשת לא נמצא</h1>
+        <p>נראה שהלוקיישן הזה עדיין לא נמצא במאגר שלנו 😊<br>
+        בואו נעזור לכם למצוא את מה שאתם מחפשים</p>
+        <div class="cta-buttons">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                חזרה לדף הבית
+            </a>
+            <a href="/contact.html" class="btn btn-secondary">
+                <i class="fas fa-phone"></i>
+                צור קשר
+            </a>
+        </div>
+    </div>
+</body>
+</html>
