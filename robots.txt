@@ -1,0 +1,32 @@
+# robots.txt for multibrawn.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://multibrawn.com/sitemap.xml
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Allow CSS and JS for better rendering
+User-agent: *
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /*.css$
+Allow: /*.js$
+
+# Crawl delay (optional - be nice to server)
+Crawl-delay: 1
