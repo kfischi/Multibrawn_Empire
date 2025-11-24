@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>MULTIBRAWN - גלריה</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    
+    <style>
+        :root { --site-accent: #FF5EA1; --site-text: #1a0b2e; }
+        body { font-family: 'Heebo', sans-serif; background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%); color: var(--site-text); overflow-x: hidden; min-height: 100vh; }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+        
+        #main-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); height: 80px; display: flex; align-items: center; }
+        nav { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { width: 50px; height: 50px; }
+        .logo span { font-size: 1.5rem; font-weight: 800; color: var(--site-text); font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--site-text); text-decoration: none; font-size: 1rem; font-weight: 600; }
+        .nav-cta { background: var(--site-accent); color: white !important; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(255, 94, 161, 0.4); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--site-text); cursor: pointer; background: none; border: none; }
+
+        .gallery-hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; position: relative; color: white; text-align: center; background: url('https://res.cloudinary.com/dptyfvwyo/image/upload/v1762004983/HERO_zb7pwc.jpg') no-repeat center/cover; border-radius: 0 0 40px 40px; margin-bottom: 3rem; padding-top: 80px; }
+        .gallery-hero::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); border-radius: 0 0 40px 40px; }
+        .hero-content { position: relative; z-index: 2; }
+        
+        .filter-container { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; padding: 1rem; margin-bottom: 2rem; }
+        .filter-btn { padding: 0.6rem 1.5rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; font-weight: 600; }
+        .filter-btn:hover, .filter-btn.active { background: var(--site-accent); color: white; border-color: var(--site-accent); }
+        
+        .category-section { margin-bottom: 4rem; padding: 0 2rem; max-width: 1400px; margin-left: auto; margin-right: auto; }
+        .category-title { font-size: 1.8rem; margin-bottom: 1.5rem; padding-right: 1rem; color: var(--site-text); border-right: 5px solid var(--site-accent); display: inline-block; }
+        
+        .gallery-row { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1.5rem; scrollbar-width: none; }
+        .gallery-row::-webkit-scrollbar { display: none; }
+        .gallery-card { flex: 0 0 300px; height: 400px; position: relative; border-radius: 15px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+        .gallery-card:hover { transform: scale(1.05); }
+        .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-card video { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-card .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,94,161,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; transition: 0.3s; }
+        .gallery-card:hover .play-icon { transform: translate(-50%, -50%) scale(1.1); background: rgba(255,94,161,1); }
+        
+        .floating-btn { position: fixed; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 9999; transition: transform 0.3s; cursor: pointer; }
+        .whatsapp-float { bottom: 30px; right: 30px; background-color: #25D366; text-decoration: none; }
+        .accessibility-float { bottom: 30px; left: 30px; background-color: #0072b1; font-size: 1.5rem; }
+
+        footer { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 3rem 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.2); }
+        .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-icon { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--site-text); font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
+        .social-icon:hover { transform: translateY(-3px); color: var(--site-accent); }
+
+        @media (max-width: 768px) { 
+            .nav-links { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 2rem; border-bottom: 1px solid #eee; gap: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .filter-container { padding: 0.5rem; gap: 0.5rem; }
+            .filter-btn { font-size: 0.85rem; padding: 0.5rem 1rem; }
+            .gallery-card { flex: 0 0 250px; height: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <nav>
+            <a href="index.html" class="logo"><img src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png" alt="Logo"><span>MULTIBRAWN</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">דף הבית</a>
+                <a href="gallery.html" style="color: var(--site-accent);">גלריה</a>
+                <a href="tips.html">טיפים חשובים</a>
+                <a href="about.html">אודות</a>
+                <a href="contact.html" class="nav-cta">צור קשר</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <div class="gallery-hero">
+        <div class="hero-content">
+            <h1 class="text-5xl font-bold mb-4">הגלריה שלנו</h1>
+            <p class="text-xl opacity-90">הצצה למקומות הכי שווים בארץ</p>
+        </div>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGallery('all')">הכל</button>
+        <button class="filter-btn" onclick="filterGallery('villas')">וילות</button>
+        <button class="filter-btn" onclick="filterGallery('zimmer')">צימרים</button>
+        <button class="filter-btn" onclick="filterGallery('apartments')">דירות</button>
+        <button class="filter-btn" onclick="filterGallery('hotels')">מלונות</button>
+        <button class="filter-btn" onclick="filterGallery('events')">אירועים</button>
+    </div>
+
+    <!-- Gallery Content -->
+    <div class="category-section" data-category="villas">
+        <h2 class="category-title">🏛️ וילות מפוארות</h2>
+        <div class="gallery-row">
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Hotel2_ag6ani.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Hotel2_ag6ani.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818933/18_uwsdum.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818933/18_uwsdum.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/17_mgy3lm.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/17_mgy3lm.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/10_twwd6a.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/10_twwd6a.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/11_zfcibc.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/11_zfcibc.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/2_d3zuys.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/2_d3zuys.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/4_yhvwpe.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/4_yhvwpe.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/14_q7ubr6.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818932/14_q7ubr6.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/video/upload/v1760818936/Villa4_rgxrdz.mp4" class="glightbox gallery-card" data-type="video">
+                <video style="width: 100%; height: 100%; object-fit: cover;" muted loop playsinline>
+                    <source src="https://res.cloudinary.com/dptyfvwyo/video/upload/v1760818936/Villa4_rgxrdz.mp4" type="video/mp4">
+                </video>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,94,161,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <i class="fas fa-play"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="category-section" data-category="zimmer">
+        <h2 class="category-title">🌄 צימרים רומנטיים</h2>
+        <div class="gallery-row">
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726367/AA_s4nej0.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726367/AA_s4nej0.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726074/A7_rwzsuo.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726074/A7_rwzsuo.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726069/A2_ztreuy.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726069/A2_ztreuy.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726070/A4_mtzg9u.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763726070/A4_mtzg9u.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818996/Zimmer3_aeh3xh.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818996/Zimmer3_aeh3xh.jpg" loading="lazy"></a>
+        </div>
+    </div>
+    
+    <!-- Additional categories (Apartments, Hotels, Events) following same pattern -->
+    <div class="category-section" data-category="apartments">
+        <h2 class="category-title">🏙️ דירות נופש ופנטהאוזים</h2>
+        <div class="gallery-row">
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/20_t6yw8m.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/20_t6yw8m.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Apartment1_mrxdad.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Apartment1_mrxdad.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Apartment2_u9fsdk.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Apartment2_u9fsdk.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724320/2_tlbzz1.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724320/2_tlbzz1.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724277/3_ctc4y9.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724277/3_ctc4y9.jpg" loading="lazy"></a>
+        </div>
+    </div>
+
+    <div class="category-section" data-category="hotels">
+        <h2 class="category-title">🏨 מלונות בוטיק</h2>
+        <div class="gallery-row">
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Hotel1_ihkey7.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818995/Hotel1_ihkey7.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763934738/1_q1n5ox.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763934738/1_q1n5ox.jpg" loading="lazy"></a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/video/upload/v1763934890/%D7%9E%D7%A9%D7%92%D7%99%D7%97_bfohpe.mp4" class="glightbox gallery-card" data-type="video">
+                <video style="width: 100%; height: 100%; object-fit: cover;" muted loop playsinline>
+                    <source src="https://res.cloudinary.com/dptyfvwyo/video/upload/v1763934890/%D7%9E%D7%A9%D7%92%D7%99%D7%97_bfohpe.mp4" type="video/mp4">
+                </video>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,94,161,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <i class="fas fa-play"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="category-section" data-category="events">
+        <h2 class="category-title">💍 מתחמי אירועים מרהיבים</h2>
+        <div class="gallery-row">
+            <a href="https://res.cloudinary.com/dptyfvwyo/video/upload/v1763724590/1_tw7b0t.mp4" class="glightbox gallery-card" data-type="video">
+                <video style="width: 100%; height: 100%; object-fit: cover;" muted loop playsinline>
+                    <source src="https://res.cloudinary.com/dptyfvwyo/video/upload/v1763724590/1_tw7b0t.mp4" type="video/mp4">
+                </video>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,94,161,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <i class="fas fa-play"></i>
+                </div>
+            </a>
+            <a href="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724410/1_mlcpdy.jpg" class="glightbox gallery-card"><img src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1763724410/1_mlcpdy.jpg" loading="lazy"></a>
+        </div>
+    </div>
+
+    <a href="https://wa.me/972523983394?text=שלום,%20אני%20פונה%20מאתר%20מולטיבראון.%20אשמח%20שנדבר" target="_blank" class="floating-btn whatsapp-float" title="וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+    <div class="floating-btn accessibility-float" onclick="alert('תפריט נגישות')" title="נגישות"><i class="fas fa-wheelchair"></i></div>
+
+    <footer>
+        <div style="margin-bottom:2rem;"><img src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png" style="width:60px;margin:0 auto;"></div>
+        <div class="footer-social">
+            <a href="https://www.youtube.com/@Multibrawn" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/1EhDNF1BCQ/?mibextid=wwXIfr" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/multibrawn.israel?igsh=eW5weTU3M2d0NXNz&utm_source=qr" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@multibrawn" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; justify-content: center; font-size: 0.9rem;">
+            <a href="privacy.html" style="color:white; opacity: 0.8; text-decoration: none;">מדיניות פרטיות</a>
+            <span style="color:white; opacity:0.5;">|</span>
+            <a href="accessibility.html" style="color:white; opacity: 0.8; text-decoration: none;">הצהרת נגישות</a>
+        </div>
+        <a href="contact.html" class="nav-cta" style="display:inline-block; margin-top:1rem;">הזמן עכשיו</a>
+        <p style="margin-top:2rem; opacity:0.7;">© 2025 MULTIBRAWN</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({ touchNavigation: true, loop: true });
+        
+        // Filter Gallery - משופר!
+        function filterGallery(cat) {
+            document.querySelectorAll('.category-section').forEach(sec => {
+                sec.style.display = (cat === 'all' || sec.dataset.category === cat) ? 'block' : 'none';
+            });
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(cat)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('galleryCategory', cat);
+            
+            // Update URL hash
+            window.location.hash = cat === 'all' ? '' : cat;
+        }
+        
+        // Load from localStorage or URL hash on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlHash = window.location.hash.substring(1); // Remove #
+            const savedCategory = localStorage.getItem('galleryCategory');
+            const category = urlHash || savedCategory || 'all';
+            
+            if (category && category !== 'all') {
+                filterGallery(category);
+            }
+        });
+        
+        // Mobile Menu Toggle - משופר!
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.querySelector('.menu-toggle i');
+            
+            navLinks.classList.toggle('active');
+            
+            // שינוי אייקון
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+        
+        // סגירה אוטומטית של תפריט
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.getElementById('navLinks');
+                const menuIcon = document.querySelector('.menu-toggle i');
+                
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
